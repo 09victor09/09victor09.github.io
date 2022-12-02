@@ -35,13 +35,13 @@ async function getData(){
                 y: {
                     title: {
                         display: 'true',
-                        text: 'temperatuur in graden'
+                        text: 'yTitle'
                     }
                 },
                 x: {
                     title: {
                         display: 'true',
-                        text: 'time'
+                        text: 'xTitle'
                     }
                 }
             },
