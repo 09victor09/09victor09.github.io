@@ -20,20 +20,40 @@ async function getData(){
 
     new Chart(document.getElementById("line-chart"),{
         type: 'line',
-        data:{
+        data: {
             labels: time,
             datasets: [
                 {
                     label: "Temperature",
-                    data: temperature_2m
-                }
-            ]
+                    data: temperature_2m,
+                },
+            ],
         },
         options: {
             legend: { display: false },
-            title: {
-                display: true,
-                text: 'Weather'
+            scales: { 
+                y: {
+                    title: {
+                        display: 'true',
+                        text: 'temperatuur in graden'
+                    }
+                },
+                x: {
+                    title: {
+                        display: 'true',
+                        text: 'time'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperature',
+                    padding: {
+                        top: 10,
+                        bottom: 10
+                    }
+                }
             }
         }
     });
