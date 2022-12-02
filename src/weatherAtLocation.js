@@ -33,9 +33,11 @@ async function getData(latitude, longitude, chartName){
         },
         options: {
             legend: { display: false },
-            title: {
-                display: true,
-                text: 'Weather'
+            plugins:{
+                title: {
+                    display: true,
+                    text: chartName
+                }
             }
         }
     });
