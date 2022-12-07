@@ -1,4 +1,4 @@
-var url = '/* insert out url here */';
+var url = '/* insert our url here */';
 
 getData();
 
@@ -18,12 +18,7 @@ async function getData() {
     temperature.push(data.py_wierden.temperature[i]);
   }
 
-  console.log("temp:", temperature);
-  console.log("time:", time);
-
-  var ctx = document.getElementById('test_json');
-
-  new Chart(document.getElementById("weather-chart"),{
+  new Chart(document.getElementById("test_json"),{
     type: 'line',
     data: {
       labels: time,
