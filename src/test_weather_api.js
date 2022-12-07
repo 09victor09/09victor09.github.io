@@ -18,7 +18,7 @@ async function getData(){
         temperature_2m.push(data.hourly.temperature_2m[i]);
     }
 
-    new Chart(document.getElementById("line-chart"),{
+    new Chart(document.getElementById("weather-chart"),{
         type: 'line',
         data: {
             labels: time,
