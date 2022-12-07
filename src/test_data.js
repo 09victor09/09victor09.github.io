@@ -1,53 +1,65 @@
+var url = '/* insert out url here */';
+
 getData();
 
-function getData() {
-  const fs = require("fs");
+async function getData() {
+  const response = await fetch(url);
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+  length = data.hourly.time.length;
+  console.log(length);
 
-  fs.readFile("src/json_file.json", "utf8", (err, jsonString) => {
-    if (err) {
-      console.log("File read failed:", err);
-      return;
-    }
-    console.log("File data:", jsonString);
-    
-    const data = JSON.parse(jsonString);
-    console.log("Data py_wierden:", data.py_wierden);
-    length = data.py_wierden.entry_date.length;
-    console.log(length);
+  time = [];
+  temperature = [];
 
+  for (i = 0; i < length; i++) {
+    time.push(data.py_wierden.entry_date[i]);
+    temperature.push(data.py_wierden.temperature[i]);
+  }
 
-    tijd = [];
-    temperature = [];
+  console.log("temp:", temperature);
+  console.log("time:", time);
 
-    for (i = 0; i < length; i++) {
-      tijd.push(data.py_wierden.entry_date[i]);
-      temperature.push(data.py_wierden.temperature[i]);
-    }
+  var ctx = document.getElementById('test_json');
 
-    console.log("temp:", temperature);
-    console.log("time:", tijd);
-
-    var ctx = document.getElementById('test_json');
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
+  new Chart(document.getElementById("weather-chart"),{
+    type: 'line',
+    data: {
+      labels: time,
+      datasets: [
+      {
+        label: "Temperature",
+        data: temperature,
       },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
+      ],
+    },
+    options: {
+      legend: { display: false },
+      scales: { 
+        y: {
+          title: {
+            display: 'true',
+            text: 'yTitle'
+          }
+        },
+        x: {
+          title: {
+            display: 'true',
+            text: 'xTitle'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Temperature',
+          padding: {
+            top: 10,
+            bottom: 10
           }
         }
       }
-    });
-
-    
-  });
+    }
+  }); 
 }
