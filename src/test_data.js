@@ -1,3 +1,5 @@
+// this is to get the information from py_wierden and put it into a graph
+
 var url = '/* insert our url here */';
 
 getData();
@@ -7,7 +9,7 @@ async function getData() {
   console.log(response);
   const data = await response.json();
   console.log(data);
-  length = data.hourly.time.length;
+  length = data.py_wierden.entry_date.length;
   console.log(length);
 
   time = [];
@@ -18,6 +20,7 @@ async function getData() {
     temperature.push(data.py_wierden.temperature[i]);
   }
 
+  // this is used to create the graph
   new Chart(document.getElementById("test_json"),{
     type: 'line',
     data: {
