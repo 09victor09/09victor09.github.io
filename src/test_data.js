@@ -1,19 +1,3 @@
-
-// function getData() {
-//   fs.readFile("src/json_file.json", "utf8", (err, jsonString) => {
-//     if (err) {
-//       console.log("Error reading file from disk:", err);
-//       return;
-//     }
-//     try {
-//       const data = JSON.parse(jsonString);
-//       console.log("Data py_wierden is:", data.py_wierden);
-//     } catch (err) {
-//       console.log("Error parsing JSON string:", err);
-//     }
-//   });
-// }
-
 getData();
 
 function getData() {
