@@ -37,7 +37,7 @@ async function getData() {
         y: {
           title: {
             display: 'true',
-            text: 'air pressure [pHa]'
+            text: 'pressure [pHa]'
           }
         },
         x: {
