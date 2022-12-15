@@ -7,6 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="src/weatherAtLocation.js"></script>
   <script src="src/dropDown.js"></script>
+  <script src="src/remove.js"></script>
   <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
 </head>
@@ -14,15 +15,30 @@
   <div class="container">
     <form>
       Select a city:
-      <select id="mySelect">
-        <option>Doha</option>
+      <select id="latitude">
         <option>Winnipeg</option>
+        <!-- 49.9 -->
+        <option>Doha</option>
+        <!-- -97.1 -->
       </select>
       <br><br>
-      <input type="button" onclick=getData(getDropDownOption()) value="Click Me!">
+      <select id="longitude">
+        <option>25.3</option>
+        <option>51.5</option>
+      </select>
+      <br><br>
+      <input type="button" onclick="getData(getDropDownOption('latitude'))" value="Click Me!">
     </form>
 
     <canvas id="weatherChart"></canvas>
+    <button onclick="myFunction()">Remove</button>
+
+      <script>
+      function myFunction() {
+        const element = document.getElementById("weatherChart");
+        element.remove();
+      }
+      </script>
   </div> 
 </body>
 </html>
