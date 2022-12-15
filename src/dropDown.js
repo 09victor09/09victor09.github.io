@@ -1,5 +1,4 @@
-function getOption() {
+function getDropDownOption() {
     var obj = document.getElementById("mySelect");
-    document.getElementById("demo").innerHTML = 
-    obj.options[obj.selectedIndex].text;
+    return obj.options[obj.selectedIndex].text;
   }

@@ -13,19 +13,16 @@
 <body>
   <div class="container">
     <form>
-      Select your favorite fruit:
+      Select a city:
       <select id="mySelect">
         <option>Doha</option>
         <option>Winnipeg</option>
       </select>
       <br><br>
-      <input type="button" onclick="getOption()" value="Click Me!">
+      <input type="button" onclick=getData(getDropDownOption()) value="Click Me!">
     </form>
-
-    <p id = "demo"></p>
 
     <canvas id="weatherChart"></canvas>
   </div> 
-  <script>getData("Enschede")</script>
 </body>
 </html>

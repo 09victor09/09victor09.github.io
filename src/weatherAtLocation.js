@@ -12,11 +12,7 @@ async function getData(location){
     }if(location == "Winnipeg"){
         latitude = 49.9;
         longitude = -97.1;
-    }else{
-        latitude = 0;
-        longitude = 0;
     }
-
     var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`;
 
     const response = await fetch(url);
@@ -29,7 +25,7 @@ async function getData(location){
     time = [];
     temperature_2m = [];
 
-    for(i=0; i< length; i++){
+    for(i=0; i< 24; i++){
         time.push(data.hourly.time[i]);
         temperature_2m.push(data.hourly.temperature_2m[i]);
     }
