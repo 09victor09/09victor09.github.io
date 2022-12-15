@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>Weather App</title>
-</head>
-<body>
-  <div class="container">
-    <!-- <canvas id="weather-chart"></canvas> -->
-    <!-- <canvas id="line_chart"></canvas> -->
-    <canvas id="test_json"></canvas>
-    <canvas id="light_py_wierden"></canvas>
-    <canvas id="pressure_py_wierden"></canvas>
-  </div> 
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="src/weatherAtLocation.js"></script>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="src/main.css">
+  </head>
+  <body>
+    <div class="grid">
+      <h1>A Responsive Chart with Chart.js</h1>
+      <aside><p>This is a chart showing some test data.</p></aside>
+      <figure class="chart-wrap">
+      <!-- <canvas id="chart"></canvas> -->
+        <button onclick="getData(25.3, 51.5,`weatherDoha`)">Click me</button>
+        <canvas id="weatherDoha"></canvas>
+        <canvas id="weatherWinnipeg"></canvas>
+      </figure>
+      <footer><p>Here is some stuff at the bottom of the page.</p></footer>
+    <!-- <button onclick="getData(25.3, 51.5,`weatherDoha`)">Click me</button> -->
+    <!-- <canvas id="weatherDoha"></canvas>
+    <canvas id="weatherWinnipeg"></canvas> -->
+    </div> 
+    <script>
+      getData(49.9, -97.1, "weatherWinnipeg")
+    </script>
     <!-- <script src="src/linechart.js"></script> -->
-    <!-- <script src="src/test_weather_api.js"></script> -->
-    <script src="src/test_data.js"></script>
-    <script src="src/light_py_wierden.js"></script>
-    <script src="src/pressure_py_wierden.js"></script>
-</body>
+
+  </body>
 </html>
