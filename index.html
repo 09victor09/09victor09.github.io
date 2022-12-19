@@ -4,41 +4,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="src/weatherAtLocation.js"></script>
   <script src="src/dropDown.js"></script>
-  <script src="src/remove.js"></script>
-  <link rel="stylesheet" href="styles/styles.css">
+  <script src="src/addRemoveElements.js"></script>
+  <script src="src/addWeatherChart.js"></script>
+
+  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
   <title>Weather App</title>
 </head>
+
 <body>
-  <div class="container">
+  <div id="div1">
     <form>
-      Select a city:
-      <select id="latitude">
+      Select an output type:
+      <select id="output_type">
         <option>Winnipeg</option>
-        <!-- 49.9 -->
         <option>Doha</option>
-        <!-- -97.1 -->
+        <option>pressure</option>
       </select>
-      <br><br>
-      <select id="longitude">
-        <option>25.3</option>
-        <option>51.5</option>
+
+      Select one or more devices
+      <select id="devices" multiple>
+        <option>py_wierden</option>
+        <option>py_saxion</option>
+        <option>lht_saxion</option>
+        <option>lht_wierden</option>
+        <option>lht_gronau</option>
       </select>
-      <br><br>
-      <input type="button" onclick="getData(getDropDownOption('latitude'))" value="Click Me!">
+
     </form>
-
-    <canvas id="weatherChart"></canvas>
-    <button onclick="myFunction()">Remove</button>
-
-      <script>
-      function myFunction() {
-        const element = document.getElementById("weatherChart");
-        element.remove();
-      }
-      </script>
-  </div> 
+  </div>
+  <button onclick="addWeatherChart('Doha')">Add Element</button>
 </body>
 </html>
