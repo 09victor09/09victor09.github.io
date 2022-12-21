@@ -20,8 +20,8 @@
     <form>
       Select an output type:
       <select id="output_type">
-        <option>Winnipeg</option>
-        <option>Doha</option>
+        <option>temperature</option>
+        <option>light</option>
         <option>pressure</option>
       </select>
 
@@ -36,6 +36,6 @@
 
     </form>
   </div>
-  <button onclick="addWeatherChart('Doha')">Add Element</button>
+  <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
 </body>
 </html>
