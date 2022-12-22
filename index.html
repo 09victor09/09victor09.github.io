@@ -4,19 +4,42 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="src/weatherAtLocation.js"></script>
+  <script src="src/dropDown.js"></script>
+  <script src="src/addRemoveElements.js"></script>
+  <script src="src/addWeatherChart.js"></script>
+
+  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
   <title>Weather App</title>
 </head>
+
 <body>
-  <div class="container">
-    <button onclick="getData(25.3, 51.5,`weatherDoha`)">Click me</button>
-    <canvas id="weatherDoha"></canvas>
-    <canvas id="weatherWinnipeg"></canvas>
-  </div> 
-  <script>
-    // getData(25.3, 51.5, "weatherDoha");
-    getData(49.9, -97.1, "weatherWinnipeg")
-  </script>
+  <div id="div1">
+    <form>
+      Select an output type:
+      <select id="output_type">
+        <option>temperature</option>
+        <option>light</option>
+        <option>pressure</option>
+        <option>Hum_SHT</option>
+        <option>ILL_lx</option>
+        <option>TempC_SHT</option>
+        <option>TempC_DS</option>
+      </select>
+
+      Select one or more devices
+      <select id="devices" multiple>
+        <option>py_wierden</option>
+        <option>py_saxion</option>
+        <option>py_group3</option>
+        <option>lht_saxion</option>
+        <option>lht_wierden</option>
+        <option>lht_gronau</option>
+      </select>
+
+    </form>
+  </div>
+  <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
 </body>
 </html>
