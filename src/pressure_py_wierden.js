@@ -1,62 +1,75 @@
-
-var url = '/* insert our url here */';
-
 getData();
 
+async function getDataFromUrl(/*url*/){
+    var url = "https://d8cf-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+  
+    const response = await fetch(url,{
+        method: "get",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+          "Content-Type": "application/json"
+        })
+    }).catch((error) =>{
+        alert(error);
+    });
+    return response.json();
+  }
+
 async function getData() {
-  const response = await fetch(url);
-  console.log(response);
-  const data = await response.json();
-  console.log(data);
-  length = data.py_wierden.entry_date.length;
-  console.log(length);
+  var data = await getDataFromUrl();
 
   time = [];
-  pressure = [];
+  pressure_py_wierden = [];
+  pressure_py_saxion = [];
 
-  for (i = 0; i < length; i++) {
-    time.push(data.py_wierden.entry_date[i]);
-    pressure.push(data.py_wierden.pressure[i]);
+  for(i = 0; i < data.py_wierden.entry_hour.length; i++){
+      time.push(data.py_wierden.entry_hour[i]);
+      pressure_py_wierden.push(data.py_wierden.pressure[i]);
+      pressure_py_saxion.push(data.py_saxion.pressure[i]);
   }
 
   // this is used to create the graph
   new Chart(document.getElementById("pressure_py_wierden"),{
     type: 'line',
-    data: {
-      labels: time,
-      datasets: [
-      {
-        label: "Pressure",
-        data: pressure,
-      },
-      ],
+    data:{
+        labels: time,
+        datasets: [
+            {
+                label: "py_wierden",
+                data: pressure_py_wierden
+            },
+            {
+                label: "py_saxion",
+                data: pressure_py_saxion
+            },
+        ]
     },
     options: {
-      legend: { display: false },
-      scales: { 
-        y: {
-          title: {
-            display: 'true',
-            text: 'pressure [pHa]'
-          }
+        legend: { display: false },
+        scales: {
+            y: {
+                title: {
+                    display: 'true',
+                    text: 'temp in degrees Celsius'
+                }
+            },
+            x: {
+                title: {
+                    display: 'true',
+                    text: 'time in hours'
+                }
+            }
         },
-        x: {
-          title: {
-            display: 'true',
-            text: 'time'
-          }
+        plugins:{
+            title: {
+                display: true,
+                text: 'Temperature',
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            }
         }
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: 'Pressure py_wierden',
-          padding: {
-            top: 10,
-            bottom: 10
-          }
-        }
-      }
     }
-  }); 
+});
 }

@@ -1,32 +1,35 @@
 getData();
 
+async function getDataFromUrl(/*url*/){
+    var url = "https://d8cf-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+  
+    const response = await fetch(url,{
+        method: "get",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+          "Content-Type": "application/json"
+        })
+    }).catch((error) =>{
+        alert(error);
+    });
+    return response.json();
+  }
+
 async function getData(){
-    var url_enschede = `https://api.open-meteo.com/v1/forecast?latitude=52.2215372&longitude=6.8936619&hourly=temperature_2m`;
-    var url_wierden = `https://api.open-meteo.com/v1/forecast?latitude=52.3582599&longitude=6.593873&hourly=temperature_2m`;
-    var url_gronau =  `https://api.open-meteo.com/v1/forecast?latitude=52.184120&longitude=7.028936&hourly=temperature_2m`;
-
-    const response_enschede = await fetch(url_enschede);
-    const data_enschede = await response_enschede.json();
-
-    const response_wierden = await fetch(url_wierden);
-    const data_wierden = await response_wierden.json();
-
-    const response_gronau = await fetch(url_gronau);
-    const data_gronau = await response_gronau.json();
+    var data = await getDataFromUrl();
 
     time = [];
-    temp_enschede = [];
-    temp_wierden = [];
-    temp_gronau = [];
+    temp_py_wierden = [];
+    temp_py_saxion = [];
 
-    for(i = 0; i < 24; i++){
-        time.push(data_enschede.hourly.time[i]);
-        temp_enschede.push(data_enschede.hourly.temperature_2m[i]);
-        temp_wierden.push(data_wierden.hourly.temperature_2m[i]);
-        temp_gronau.push(data_gronau.hourly.temperature_2m[i]);
+    for(i = 0; i < data.py_wierden.entry_hour.length; i++){
+        time.push(data.py_wierden.entry_hour[i]);
+        temp_py_wierden.push(data.py_wierden.temperature[i]);
+        temp_py_saxion.push(data.py_saxion.temperature[i]);
     }
 
     console.log(time);
+    console.log(temp_py_wierden);
 
     new Chart(document.getElementById("line-chart"),{
         type: 'line',
@@ -34,17 +37,13 @@ async function getData(){
             labels: time,
             datasets: [
                 {
-                    label: "temp_enschede",
-                    data: temp_enschede
+                    label: "py_wierden",
+                    data: temp_py_wierden
                 },
                 {
-                    label: "temp_wierden",
-                    data: temp_wierden
+                    label: "py_saxion",
+                    data: temp_py_saxion
                 },
-                {
-                    label: "temp_gronau",
-                    data: temp_gronau,
-                }
             ]
         },
         options: {
@@ -59,7 +58,7 @@ async function getData(){
                 x: {
                     title: {
                         display: 'true',
-                        text: 'time (needs better title)'
+                        text: 'time in hours'
                     }
                 }
             },
