@@ -11,14 +11,23 @@ async function getDataFromUrl(url){
     return response.json();
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function addData(chart, label, data) {
     chart.data.datasets.push({
         label: label,
-        data: data
+        data: data,
+        borderColor: getRandomColor()
     })
     chart.update();
 }
-
 
 async function addWeatherChart(output_type, devices){
 
@@ -28,13 +37,8 @@ async function addWeatherChart(output_type, devices){
 
     time = [];
 
-    temperature_1 = [];
-    temperature_2 = [];
-
     for(i=0; i< data[devices[0]].entry_hour.length; i++){
         time.push(data[devices[0]].entry_hour[i]);
-        temperature_1.push(data[devices[0]][output_type][i]);
-        temperature_2.push(data[devices[1]][output_type][i]);
     }
 
     removeElement("div1");
@@ -53,13 +57,13 @@ async function addWeatherChart(output_type, devices){
             plugins:{
                 title: {
                     display: true,
-                    text: devices[0]
+                    text: output_type
                 }
             }
         }
     });
 
-    addData(chart, output_type, temperature_1);
-    addData(chart, output_type, temperature_2);
-    
+    for(var device of devices){
+        addData(chart, device, data[device][output_type]);  
+    }
 }
