@@ -29,8 +29,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
-async function addWeatherChart(output_type, devices){
-
+async function addWeatherChart(output_type, devices, div_location){
     console.log("Hello there!");
 
     var url = "https://e414-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
@@ -43,9 +42,16 @@ async function addWeatherChart(output_type, devices){
         time.push(data[devices[0]].entry_hour[i]);
     }
 
-    removeElement("div1");
+    var location = getRandomColor();
     
-    addElement("div1", "canvas", location);
+    addElement(div_location, "canvas", location);
+
+    const button = document.createElement('button');
+    button.innerHTML = 'Remove';
+    button.addEventListener('click', function() {
+        removeElement(div_location);
+    });
+    div_location.appendChild(button);
 
     var ctx = document.getElementById(location);
         

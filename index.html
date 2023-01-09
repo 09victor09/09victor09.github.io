@@ -9,6 +9,7 @@
   <script src="src/dropDown.js"></script>
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
+  <script src="src/test.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
@@ -40,13 +41,13 @@
           <option>lht_wierden</option>
           <option>lht_gronau</option>
         </select>
-
-        <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
-  
       </form>
+      <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), document.getElementById('div1'))">Add Element</button>
     </aside>
     <figure class="chart-wrap">
-      <div id = "div1"></div>
+      <div id = "div1">
+        
+      </div>
     </figure>
     <footer></footer>
   </div>
