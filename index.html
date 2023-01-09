@@ -10,36 +10,45 @@
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
 
-  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+  <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
 </head>
 
 <body>
-  <div id="div1">
-    <form>
-      Select an output type:
-      <select id="output_type">
-        <option>temperature</option>
-        <option>light</option>
-        <option>pressure</option>
-        <option>Hum_SHT</option>
-        <option>ILL_lx</option>
-        <option>TempC_SHT</option>
-        <option>TempC_DS</option>
-      </select>
+  <div class="grid">
+    <h1>Weather Chart</h1>
+    <aside>
+      <p>Menu options: </p>
+      <form>
+        Select an output type:
+        <select id="output_type">
+          <option>temperature</option>
+          <option>light</option>
+          <option>pressure</option>
+          <option>Hum_SHT</option>
+          <option>ILL_lx</option>
+          <option>TempC_SHT</option>
+          <option>TempC_DS</option>
+        </select>
+  
+        Select one or more devices
+        <select id="devices" multiple>
+          <option>py_wierden</option>
+          <option>py_saxion</option>
+          <option>py_group3</option>
+          <option>lht_saxion</option>
+          <option>lht_wierden</option>
+          <option>lht_gronau</option>
+        </select>
 
-      Select one or more devices
-      <select id="devices" multiple>
-        <option>py_wierden</option>
-        <option>py_saxion</option>
-        <option>py_group3</option>
-        <option>lht_saxion</option>
-        <option>lht_wierden</option>
-        <option>lht_gronau</option>
-      </select>
-
-    </form>
+        <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
+  
+      </form>
+    </aside>
+    <figure class="chart-wrap">
+      <div id = "div1"></div>
+    </figure>
+    <footer></footer>
   </div>
-  <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
 </body>
 </html>

@@ -31,7 +31,9 @@ function addData(chart, label, data) {
 
 async function addWeatherChart(output_type, devices){
 
-    var url = "https://1ed9-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+    console.log("Hello there!");
+
+    var url = "https://e414-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
 
     var data = await getDataFromUrl(url);
 
