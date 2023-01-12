@@ -11,13 +11,16 @@
   <script src="src/addWeatherChart.js"></script>
   <script src="src/generateTable.js"></script>
 
-  <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+  <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
 </head>
 
 <body>
-  <div id="div1">
-    <form>
+  <div class="grid">
+    <h1>Weather Chart</h1>
+    <aside>
+      <p>Menu options: </p>
+      <form>
       Select an output type:
       <select id="output_type">
         <option>temperature</option>
@@ -34,12 +37,20 @@
         <option>py_devices</option>
         <option>lht_devices</option>
       </select>
-
     </form>
-  </div>
-  <button onclick="addWeatherChart(getDropDownOption('output_type'), getDropDownOption('devices'))">Add Element</button>
 
-  <input type="button" value="Generate a table" onclick="generateTable()" />
-  <script src="src/generateTable.js"></script>
+    <button onclick="addWeatherChart(getDropDownOption('output_type'), getDropDownOption('devices'), document.getElementById('div1'))">Add Element</button>
+
+    <input type="button" value="Generate a table" onclick="generateTable()" />
+    <script src="src/generateTable.js"></script>
+    </aside>
+    <figure class="chart-wrap">
+      <div id = "div1">
+        
+      </div>
+    </figure>
+    <footer></footer>
+
+  </div>
 </body>
 </html>
