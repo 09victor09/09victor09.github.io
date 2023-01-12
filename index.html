@@ -9,6 +9,7 @@
   <script src="src/dropDown.js"></script>
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
+  <script src="src/generateTable.js"></script>
 
   <!-- <link rel="stylesheet" href="styles/styles.css"> -->
   <title>Weather App</title>
@@ -30,16 +31,15 @@
 
       Select one or more devices
       <select id="devices" multiple>
-        <option>py_wierden</option>
-        <option>py_saxion</option>
-        <option>py_group3</option>
-        <option>lht_saxion</option>
-        <option>lht_wierden</option>
-        <option>lht_gronau</option>
+        <option>py_devices</option>
+        <option>lht_devices</option>
       </select>
 
     </form>
   </div>
-  <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'))">Add Element</button>
+  <button onclick="addWeatherChart(getDropDownOption('output_type'), getDropDownOption('devices'))">Add Element</button>
+
+  <input type="button" value="Generate a table" onclick="generateTable()" />
+  <script src="src/generateTable.js"></script>
 </body>
 </html>
