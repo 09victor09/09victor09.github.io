@@ -1,13 +1,14 @@
 getData();
 
 async function getDataFromUrl(/*url*/){
-    var url = "https://d8cf-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+    var url = "https://1ed9-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
   
     const response = await fetch(url,{
         method: "get",
         headers: new Headers({
           "ngrok-skip-browser-warning": "69420",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "time-period": "0d7h"
         })
     }).catch((error) =>{
         alert(error);
@@ -36,11 +37,13 @@ async function getData() {
         datasets: [
             {
                 label: "py_wierden",
-                data: pressure_py_wierden
+                data: pressure_py_wierden,
+                // tension: 1
             },
             {
                 label: "py_saxion",
-                data: pressure_py_saxion
+                data: pressure_py_saxion,
+                // tension: 1
             },
         ]
     },
