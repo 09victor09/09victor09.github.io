@@ -1,13 +1,16 @@
-function addElement(parent, elementType, elementId){
-    //var parent = document.getElementById(parentName);
+function addElementToParent(parent, elementType, classType, elementId){
     var child = document.createElement(elementType);
+    child.classList.add(classType);
     child.id = elementId;
     parent.appendChild(child);
+    return child;
 }
 
-function removeElement(parent){
-    //var parent = document.getElementById(parentName);
-    while (parent.firstChild) {
-        parent.firstChild.remove();
-    }
+function addRemoveButton(parent){
+    const button = document.createElement('button');
+    button.innerHTML = 'Remove';
+    button.addEventListener('click', function() {
+        parent.remove();
+    });
+    parent.appendChild(button);
 }
