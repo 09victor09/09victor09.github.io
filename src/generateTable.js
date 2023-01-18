@@ -13,7 +13,7 @@ async function getDataFromUrl(url){
 }
 
 async function generateTable() {
-    var url = "https://99b4-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+    var url = "https://a533-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
 
     var data = await getDataFromUrl(url);
 

@@ -9,7 +9,6 @@
   <script src="src/dropDown.js"></script>
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
-  <script src="src/generateTable.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
@@ -21,36 +20,64 @@
     <aside>
       <p>Menu options: </p>
       <form>
-      Select an output type:
-      <select id="output_type">
-        <option>temperature</option>
-        <option>light</option>
-        <option>pressure</option>
-        <option>Hum_SHT</option>
-        <option>ILL_lx</option>
-        <option>TempC_SHT</option>
-        <option>TempC_DS</option>
-      </select>
+        Select an output type:
+        <select id="output_type">
+          <option>Pressure</option>
+          <option>Humidity</option>
+          <option>Light intensity</option>
+          <option>Inside temperature</option>
+          <option>Outside temperature</option>
+        </select>
+  
+        Select one or more devices
+        <select id="devices" multiple>
+          <option>py_wierden</option>
+          <option>py_saxion</option>
+          <option>py_group3</option>
+          <option>lht_saxion</option>
+          <option>lht_wierden</option>
+          <option>lht_gronau</option>
+        </select>
+      </form>
 
-      Select one or more devices
-      <select id="devices" multiple>
-        <option>py_devices</option>
-        <option>lht_devices</option>
-      </select>
-    </form>
+      <input type="checkbox" id="enableHourSlider">
+      Hours: <input type="range" min="0" max="24" value="0" id="hourSlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
+      <output>0</output>
+      <input type="checkbox" id="enableDaySlider">
+      Days: <input type="range" min="0" max="30" value="0" id="daySlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
+      <output>0</output>
 
-    <button onclick="addWeatherChart(getDropDownOption('output_type'), getDropDownOption('devices'), document.getElementById('div1'))">Add Element</button>
+      <script>
+        // get references to the checkbox and the slider
+        var hourCheckbox = document.getElementById("enableHourSlider");
+        var dayCheckbox = document.getElementById("enableDaySlider");
+        var hourSlider = document.getElementById("hourSlider");
+        var daySlider = document.getElementById("daySlider");
 
-    <input type="button" value="Generate a table" onclick="generateTable()" />
-    <script src="src/generateTable.js"></script>
+        hourCheckbox.addEventListener("change", function(){
+          hourSlider.disabled = !hourCheckbox.checked;
+          dayCheckbox.checked = false;
+          daySlider.disabled = true;
+          daySlider.value = 0;
+          daySlider.nextElementSibling.value = 0;
+        })
+
+        dayCheckbox.addEventListener("change", function(){
+          daySlider.disabled = !dayCheckbox.checked;
+          hourCheckbox.checked = false;
+          hourSlider.disabled = true;
+          hourSlider.value = 0;
+          hourSlider.nextElementSibling.value = 0;
+        })
+      </script>
+
+      <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), getSliderOption('hourSlider'), getSliderOption('daySlider'), document.getElementById('chartGridDiv'))">Add Element</button>
+    
     </aside>
     <figure class="chart-wrap">
-      <div id = "div1">
-        
-      </div>
+      <div id="chartGridDiv" class="chart-grid"></div>
     </figure>
     <footer></footer>
-
   </div>
 </body>
 </html>
