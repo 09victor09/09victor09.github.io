@@ -9,28 +9,28 @@
   <script src="src/dropDown.js"></script>
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
+  <script src="src/addMetaDataTable.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
   <title>Weather App</title>
 </head>
 
 <body>
-  <div class="grid">
-    <h1>Weather Chart</h1>
-    <aside>
+  <div class="pageGrid">
+    <header>Weather Chart</header>
+    <left-column>
       <p>Menu options: </p>
       <form>
         Select an output type:
         <select id="output_type">
+          <option>Inside_Temperature</option>
+          <option>Outside_Temperature</option>
+          <option>Light</option>
+          <option>Humidity</option>
+          <option>Pressure</option>
           <option>temperature</option>
-          <option>light</option>
-          <option>pressure</option>
-          <option>Hum_SHT</option>
-          <option>ILL_lx</option>
-          <option>TempC_SHT</option>
-          <option>TempC_DS</option>
         </select>
-  
+
         Select one or more devices
         <select id="devices" multiple>
           <option>py_wierden</option>
@@ -41,7 +41,7 @@
           <option>lht_gronau</option>
         </select>
       </form>
-
+        
       <input type="checkbox" id="enableHourSlider">
       Hours: <input type="range" min="0" max="24" value="0" id="hourSlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
       <output>0</output>
@@ -74,12 +74,12 @@
       </script>
 
       <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), getSliderOption('hourSlider'), getSliderOption('daySlider'), document.getElementById('chartGridDiv'))">Add Element</button>
-    
-    </aside>
-    <figure class="chart-wrap">
+      <button onclick="addMetaDataTable(document.getElementById('chartGridDiv'))">Display MetaData</button>
+    </left-column>
+    <right-colum>
       <div id="chartGridDiv" class="chart-grid"></div>
-    </figure>
-    <footer></footer>
+    </right-colum>
+    <footer>Copyright 2023</footer>
   </div>
 </body>
 </html>

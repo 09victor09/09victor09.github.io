@@ -45,9 +45,11 @@ function addData(chart, label, data) {
 
 async function addWeatherChart(output_type, devices, hours, days, topDiv){
 
-    var url = "https://9d88-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+    var url = "https://fe85-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
 
     var data = await getDataFromUrl(url, hours, days);
+
+    console.log(data);
 
     time = [];
 
@@ -56,7 +58,7 @@ async function addWeatherChart(output_type, devices, hours, days, topDiv){
     }
 
     var chartDivId = getRandomString();
-    var chartDiv = addElementToParent(topDiv, "div", "grid-item", chartDivId);
+    var chartDiv = addElementToParent(topDiv, "div", "chart-grid-item", chartDivId);
 
     var canvasId = getRandomString();
     var canvasElement = addElementToParent(chartDiv, "canvas", "canvasClass", canvasId);
