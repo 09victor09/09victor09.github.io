@@ -9,27 +9,35 @@
   <script src="src/dropDown.js"></script>
   <script src="src/addRemoveElements.js"></script>
   <script src="src/addWeatherChart.js"></script>
+  <script src="src/addMetaDataTable.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
+
   <title>Weather App</title>
 </head>
 
 <body>
-  <div class="grid">
-    <h1>Weather Chart</h1>
-    <aside>
-      <p>Menu options: </p>
+  <div class="pageGrid">
+    <header>Weather Chart</header>
+    <left-column>
+      <h1>Menu options: </h1>
+      <br>
+
       <form>
-        Select an output type:
+        <!-- output selection dropdown -->
+        <p>Select an output type:</p>
         <select id="output_type">
-          <option>Pressure</option>
+          <option>Inside Temperature</option>
+          <option>Outside Temperature</option>
+          <option>Light Intensity</option>
           <option>Humidity</option>
-          <option>Light intensity</option>
-          <option>Inside temperature</option>
-          <option>Outside temperature</option>
+          <option>Pressure</option>
         </select>
-  
-        Select one or more devices
+        <br>
+        <br>
+
+        <!-- device selection dropdown -->
+        <p>Select one or more devices:</p>
         <select id="devices" multiple>
           <option>py_wierden</option>
           <option>py_saxion</option>
@@ -39,14 +47,24 @@
           <option>lht_gronau</option>
         </select>
       </form>
-
-      <input type="checkbox" id="enableHourSlider">
-      Hours: <input type="range" min="0" max="24" value="0" id="hourSlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
-      <output>0</output>
-      <input type="checkbox" id="enableDaySlider">
-      Days: <input type="range" min="0" max="30" value="0" id="daySlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
-      <output>0</output>
-
+      <br>
+        
+      <!-- sliders to select the hours and days -->
+      <p>Select a time range:</p>
+      <div class="range-slider">
+        <input type="checkbox" id="enableHourSlider">
+        <p>Hours:</p>
+        <input type="range" min="0" max="24" value="0" id="hourSlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
+        <output>0</output>
+      </div>
+      <div class="range-slider">
+        <input type="checkbox" id="enableDaySlider">
+        <p>Days:</p>
+        <input type="range" min="0" max="30" value="0" id="daySlider" disabled="disabled" oninput="this.nextElementSibling.value = this.value">
+        <output>0</output>
+      </div>
+      <br>
+      
       <script>
         // get references to the checkbox and the slider
         var hourCheckbox = document.getElementById("enableHourSlider");
@@ -54,6 +72,7 @@
         var hourSlider = document.getElementById("hourSlider");
         var daySlider = document.getElementById("daySlider");
 
+        // On change off the hour checkbox enable the hour slider and disable the day slider
         hourCheckbox.addEventListener("change", function(){
           hourSlider.disabled = !hourCheckbox.checked;
           dayCheckbox.checked = false;
@@ -62,6 +81,7 @@
           daySlider.nextElementSibling.value = 0;
         })
 
+        // On change off the day checkbox enable the day slider and disable the hour slider
         dayCheckbox.addEventListener("change", function(){
           daySlider.disabled = !dayCheckbox.checked;
           hourCheckbox.checked = false;
@@ -71,13 +91,16 @@
         })
       </script>
 
-      <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), getSliderOption('hourSlider'), getSliderOption('daySlider'), document.getElementById('chartGridDiv'))">Add Element</button>
-    
-    </aside>
-    <figure class="chart-wrap">
+      <!-- button to add a weather chart with the user input -->
+      <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), getSliderOption('hourSlider'), getSliderOption('daySlider'), document.getElementById('chartGridDiv'))">Display Graph</button>
+      <br>
+      <!-- button to a add a meta data table -->
+      <button onclick="addMetaDataTable(document.getElementById('chartGridDiv'))">Display MetaData</button>
+    </left-column>
+    <right-colum>
       <div id="chartGridDiv" class="chart-grid"></div>
-    </figure>
-    <footer></footer>
+    </right-colum>
+    <footer>Esther Belinfante, Zibusiso Masuku, Hoàng Minh Lê, Iulian Cioloca and Victor van Vugt</footer>
   </div>
 </body>
 </html>
