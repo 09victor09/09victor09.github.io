@@ -1,3 +1,4 @@
+// function to get a json response from a url with the days and hours as parameters
 async function getDataFromUrl(url, hours, days){
     const response = await fetch(url,{
         method: "get",
@@ -21,6 +22,7 @@ function getRandomString(){
     return result;
 }
 
+// function to turn the device names to a hex-color code
 function stringToHexColor(labelName){
     switch(labelName){
         case "py_wierden":
@@ -44,6 +46,7 @@ function stringToHexColor(labelName){
     }
 }
 
+// function to add new dataset to an existing chart-element and add a label to it
 function addData(chart, label, data) {
     chart.data.datasets.push({
         label: label,
@@ -53,6 +56,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+// function to label a chart with an output_type
 function yLabel(output_type) {
     var y_label;
     if (output_type === "Outside Temperature" || output_type === "Inside Temperature") {
@@ -74,6 +78,7 @@ function yLabel(output_type) {
     return y_label;
 }
 
+// function to turn a output_type label into something more human-readable
 function outputType(output_type) {
     var type_output;
     if (output_type === "Outside Temperature") {
@@ -98,28 +103,31 @@ function outputType(output_type) {
     return type_output;
 }
 
-async function addWeatherChart(output_type, devices, hours, days, topDiv){
+// function to add a weather chart with a certain output_type with one or multiple devices and a hour/day time range to a parent element
+async function addWeatherChart(output_type, devices, hours, days, parentElement){
 
-    var url = "https://a533-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
-
+    //get data from the api
+    var url = "https://1e08-2001-1c06-18ca-7400-da4c-b997-d193-ca3d.eu.ngrok.io/webserver/api";
     var data = await getDataFromUrl(url, hours, days);
 
-    console.log(data);
-
+    //fill in the time stamps of the chart with the first selected device
     time = [];
-
     for(i=0; i< data[devices[0]].entry_date.length; i++){
         time.push(data[devices[0]].entry_date[i]);
     }
 
+    //make a unique div for the chart and remove button
     var chartDivId = getRandomString();
-    var chartDiv = addElementToParent(topDiv, "div", "chart-grid-item", chartDivId);
+    var chartDiv = addElementToParent(parentElement, "div", "chart-grid-item", chartDivId);
 
+    //add a chart-canvas element to the previous div
     var canvasId = getRandomString();
     var canvasElement = addElementToParent(chartDiv, "canvas", "canvasClass", canvasId);
 
+    //add a remove button to the chart-div to remove the chart-div
     addRemoveButton(chartDiv);
-      
+    
+    //add a chart to the chart-canvas element with only the timestamps
     var chart = new Chart(canvasElement,{
         type: 'line',
         data:{
@@ -150,6 +158,7 @@ async function addWeatherChart(output_type, devices, hours, days, topDiv){
         }
     });
 
+    //add for each device the data to the previously created chart
     for(var device of devices){
         addData(chart, device, data[device][outputType(output_type)]);  
     }

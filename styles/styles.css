@@ -15,6 +15,7 @@ header, footer{
 	padding: .2em;
 	text-align: center;
 }
+/* divide the page up in a grid with four elements of which the left-column encompasses the entire left side */
 .pageGrid {
 	display: grid;
 	gap: 1em;
@@ -33,12 +34,11 @@ left-column{
 	padding: 1em;
 	background: var(--color-2);
 }
-
-
 right-column{
 	grid-area: right-column;
 	padding: 1em;
 }
+/* a grid for all the chart elements so the new charts properly allign underneat the previous chart */
 .chart-grid {
 	display: grid;
   	grid-template-columns: repeat(auto-fill, 1fr);

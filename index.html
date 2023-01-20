@@ -12,6 +12,7 @@
   <script src="src/addMetaDataTable.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
+
   <title>Weather App</title>
 </head>
 
@@ -23,6 +24,7 @@
       <br>
 
       <form>
+        <!-- output selection dropdown -->
         <p>Select an output type:</p>
         <select id="output_type">
           <option>Inside Temperature</option>
@@ -34,6 +36,7 @@
         <br>
         <br>
 
+        <!-- device selection dropdown -->
         <p>Select one or more devices:</p>
         <select id="devices" multiple>
           <option>py_wierden</option>
@@ -46,6 +49,7 @@
       </form>
       <br>
         
+      <!-- sliders to select the hours and days -->
       <p>Select a time range:</p>
       <div class="range-slider">
         <input type="checkbox" id="enableHourSlider">
@@ -68,6 +72,7 @@
         var hourSlider = document.getElementById("hourSlider");
         var daySlider = document.getElementById("daySlider");
 
+        // On change off the hour checkbox enable the hour slider and disable the day slider
         hourCheckbox.addEventListener("change", function(){
           hourSlider.disabled = !hourCheckbox.checked;
           dayCheckbox.checked = false;
@@ -76,6 +81,7 @@
           daySlider.nextElementSibling.value = 0;
         })
 
+        // On change off the day checkbox enable the day slider and disable the hour slider
         dayCheckbox.addEventListener("change", function(){
           daySlider.disabled = !dayCheckbox.checked;
           hourCheckbox.checked = false;
@@ -85,8 +91,10 @@
         })
       </script>
 
+      <!-- button to add a weather chart with the user input -->
       <button onclick="addWeatherChart(getDropDownOption('output_type'), getMultipleDropDownOption('devices'), getSliderOption('hourSlider'), getSliderOption('daySlider'), document.getElementById('chartGridDiv'))">Display Graph</button>
       <br>
+      <!-- button to a add a meta data table -->
       <button onclick="addMetaDataTable(document.getElementById('chartGridDiv'))">Display MetaData</button>
     </left-column>
     <right-colum>

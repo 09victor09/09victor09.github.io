@@ -13,7 +13,7 @@ async function getDataFromUrlMetaData(url){
 }
 
 async function addMetaDataTable(topDiv) {
-    var url = "https://a533-2001-1c06-180b-b600-c6dd-83ad-209c-52e5.eu.ngrok.io/webserver/api/";
+    var url = "https://1e08-2001-1c06-18ca-7400-da4c-b997-d193-ca3d.eu.ngrok.io/webserver/api";
 
     var data = await getDataFromUrlMetaData(url);
 
