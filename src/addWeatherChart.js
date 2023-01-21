@@ -78,7 +78,7 @@ function yLabel(output_type) {
     return y_label;
 }
 
-// function to turn a output_type label into something more human-readable
+// function to turn a output_type label into something more machine-readable
 function outputType(output_type) {
     var type_output;
     if (output_type === "Outside Temperature") {
